@@ -1,0 +1,49 @@
+@mixin button_large($bg, $color) {
+  background-image: linear-gradient(to bottom, $bg 50%, darken($bg, 5) 50%);
+  background-size: 100% 200%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: $color;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 50px;
+  margin: 10px;
+  min-width: 200px;
+  min-height: 50px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+
+  &:hover {
+    background-position: 0 -100%;
+  }
+}
+
+@mixin button($bg, $color) {
+  background-image: linear-gradient(to bottom, $bg 50%, darken($bg, 5) 50%);
+  background-size: 100% 200%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: $color;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 5px 25px;
+  margin: 10px;
+  min-width: 100px;
+  min-height: 30px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+
+  &:hover {
+    background-position: 0 -100%;
+  }
+}
+
+.ButtonLarge {
+  @include button_large($color_primary, $color_dark);
+}
+
+.Button {
+  @include button($color_primary, $color_dark);
+}

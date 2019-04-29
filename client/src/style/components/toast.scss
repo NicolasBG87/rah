@@ -1,0 +1,48 @@
+.Toast {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: $color_primary;
+  padding: 15px 35px 15px 15px;
+  min-width: 350px;
+  max-width: 50%;
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+
+  &__info {
+    background: $color_info;
+  }
+
+  &__danger {
+    background: $color_danger;
+  }
+
+  &__close {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    cursor: pointer;
+  }
+
+  &-enter {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 500ms ease;
+  }
+
+  &-exit {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 500ms ease;
+  }
+}

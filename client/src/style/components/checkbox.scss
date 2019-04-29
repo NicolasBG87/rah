@@ -1,0 +1,77 @@
+.Checkbox {
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
+  & + .Label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    color: $color_gray;
+    transition: all 0.3s ease-in-out;
+  }
+
+  // Box.
+  & + .Label:before {
+    content: "";
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: 2px solid $color_highlight;
+    border-radius: 2px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:checked + .Label {
+    color: $color_highlight;
+  }
+
+  // Box hover
+  &:hover + .Label:before {
+    background: $color_highlight;
+  }
+
+  // Box focus
+  &:focus + .Label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  // Box checked
+  &:checked + .Label:before {
+    background: $color_highlight;
+  }
+
+  // Disabled state label.
+  &:disabled + .Label {
+    color: $color_gray;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + .Label:before {
+    box-shadow: none;
+    background: $color_primary;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked + .Label:after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 11px;
+    background: $color_primary;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 $color_primary, 4px 0 0 $color_primary,
+      4px -2px 0 $color_primary, 4px -4px 0 $color_primary,
+      4px -6px 0 $color_primary, 4px -8px 0 $color_primary;
+    transform: rotate(45deg);
+  }
+}
+
+.Checkbox-wrapper {
+  display: inline-block;
+}

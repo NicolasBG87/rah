@@ -1,0 +1,41 @@
+.Input {
+  position: relative;
+
+  &--invalid {
+    & label {
+      color: $color_danger;
+    }
+
+    & input {
+      border-color: $color_danger;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid $color_primary;
+    box-sizing: border-box;
+    padding: 3px 15px;
+    margin: 15px 0;
+    color: $color_primary;
+    font-size: 18px;
+  }
+
+  &__label {
+    position: absolute;
+    top: 22px;
+    left: 15px;
+    transition: all 0.3s ease-in-out;
+
+    &--focused {
+      position: absolute;
+      left: 5px;
+      top: 0;
+      font-size: 12px;
+      color: $color_gray;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}

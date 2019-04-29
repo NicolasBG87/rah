@@ -1,0 +1,42 @@
+.Login {
+  width: 500px;
+
+  &__forgot-password {
+    display: block;
+    text-align: right;
+    margin: -10px 5px 15px 0;
+  }
+
+  .CheckBoxWrapper {
+    margin: 50px 0;
+  }
+
+  &__no-account {
+    color: $color_gray;
+    margin-left: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &-enter {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(1000px);
+    transition: all 500ms ease-in-out;
+  }
+
+  &-exit {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transform: translateY(1000px);
+    transition: all 500ms ease-in-out;
+  }
+}

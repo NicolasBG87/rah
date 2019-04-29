@@ -1,0 +1,15 @@
+// COLORS
+$color_primary: #e5e0f5;
+$color_secondary: #9895ce;
+$color_highlight: #535d93;
+$color_danger: #eb5757;
+$color_info: #ff7a00;
+$color_success: #6fcf97;
+$color_dark: #323350;
+$color_black: #0e1111;
+$color_gray: rgba($color_primary, 0.5);
+
+// GRADIENTS
+@mixin gradient_bg() {
+  background: linear-gradient(56.25deg, #212332, #474975);
+}
