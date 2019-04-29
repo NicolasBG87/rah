@@ -49,6 +49,8 @@ router.post("/resetPassword", (req, res, next) => {
       secret_answer !== user.secret_answer
     )
       return next({ message: "Secret Question and/or Answer is invalid" });
+    const isPasswordValid = pwValidator(new_password);
+    if (isPasswordValid !== "") return next({ message: isPasswordValid });
 
     bcrypt
       .compare(new_password, user.password)

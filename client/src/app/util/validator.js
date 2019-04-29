@@ -7,14 +7,17 @@ export const isName = value => {
 };
 
 export const isPassword = value => {
-  return value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/);
+  return (
+    value.length > 6 &&
+    value.length < 25 &&
+    /[A-Z]/.test(value) &&
+    /[a-z]/.test(value) &&
+    /\d/.test(value)
+  );
 };
 
 export const isPasswordConfirm = (value1, value2) => {
-  return (
-    value1.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/) &&
-    isEqual(value1, value2)
-  );
+  return isEqual(value1, value2);
 };
 
 export const isSecretAnswer = value => {

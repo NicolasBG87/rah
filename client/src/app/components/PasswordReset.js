@@ -5,6 +5,7 @@ import Select from "app/components/Select";
 
 import * as validator from "app/util/validator";
 import { AuthContext } from "app/util/auth";
+import { ToastContext } from "app/components/Toast";
 
 const initialFormData = {
   email: "",
@@ -17,6 +18,7 @@ const initialFormData = {
 const PasswordReset = ({ closeModal }) => {
   const [formData, setFormData] = useState(initialFormData);
   const { resetPassword } = useContext(AuthContext);
+  const { useToast } = useContext(ToastContext);
 
   const onInputChange = e => {
     const { value, name } = e.target;
@@ -28,6 +30,19 @@ const PasswordReset = ({ closeModal }) => {
 
   const onPasswordReset = e => {
     e.preventDefault();
+    const passwordsMatch = validator.isEqual(
+      formData.new_password,
+      formData.new_passwordConfirm
+    );
+
+    if (!passwordsMatch) {
+      setFormData({
+        ...formData,
+        password: "",
+        password_confirm: ""
+      });
+      return useToast({ message: "Passwords do not match!" });
+    }
     resetPassword(formData).then(response => closeModal());
   };
 
