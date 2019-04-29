@@ -1,0 +1,49 @@
+.Tooltip {
+  position: absolute;
+  background: $color_black;
+  border-radius: 5px;
+  padding: 10px;
+  transform: translateY(-100%) translateY(-10px);
+
+  &__wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    &:before {
+      top: 100%;
+      left: 0;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-top-color: $color_black;
+      border-width: 15px;
+    }
+  }
+
+  &__content {
+    color: $color_primary;
+    font-size: 14px;
+  }
+
+  &-enter {
+    opacity: 0;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: all 250ms ease;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: all 250ms ease;
+  }
+}

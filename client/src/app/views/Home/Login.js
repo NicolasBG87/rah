@@ -7,6 +7,7 @@ import PasswordReset from "app/components/PasswordReset";
 
 import { AuthContext } from "app/util/auth";
 import { ModalContext } from "app/components/Modal";
+import { TooltipContext } from "app/components/Tooltip";
 import * as validator from "app/util/validator";
 
 const initialFormData = {
@@ -19,6 +20,14 @@ const Login = ({ history, changeView }) => {
   const [formData, setFormData] = useState(initialFormData);
   const { login } = useContext(AuthContext);
   const { useModal, closeModal } = useContext(ModalContext);
+  const { useTooltip, closeTooltip } = useContext(TooltipContext);
+
+  const onRememberMeMouseEnter = e => {
+    const { offsetLeft, offsetTop } = e.target;
+    const location = { left: offsetLeft, top: offsetTop };
+    const content = "You will remain logged in until you manually logout.";
+    useTooltip(content, location);
+  };
 
   const onInputChange = e => {
     const { value, name } = e.target;
@@ -73,7 +82,11 @@ const Login = ({ history, changeView }) => {
       <div className="Login__forgot-password">
         <sub onClick={onPasswordReset}>Forgot Password?</sub>
       </div>
-      <div className="CheckBoxWrapper">
+      <div
+        className="CheckBoxWrapper"
+        onMouseLeave={closeTooltip}
+        onMouseEnter={onRememberMeMouseEnter}
+      >
         <Checkbox
           name="rememberMe"
           checked={formData.rememberMe}
@@ -81,6 +94,7 @@ const Login = ({ history, changeView }) => {
           label="Remember me?"
         />
       </div>
+      <br />
       <Button large={true} label="Login" onClick={onLogin} />
       <span className="Login__no-account" onClick={changeView}>
         I don't have an account
