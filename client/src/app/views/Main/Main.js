@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 
 import TopBar from "app/views/Main/TopBar";
 import BottomBar from "app/views/Main/BottomBar";
+import Sidebar from "app/views/Main/Sidebar";
 
 import { AuthContext } from "app/util/auth";
 
@@ -17,9 +18,13 @@ const Main = () => {
 
   return (
     <div className="Main">
-      <TopBar user={user} />
-      <button onClick={logout}>Logout</button>
-      <BottomBar />
+      {user && user.auctions ? (
+        <React.Fragment>
+          <TopBar user={user} logout={logout} />
+          <Sidebar user={user} />
+          <BottomBar user={user} />
+        </React.Fragment>
+      ) : null}
     </div>
   );
 };

@@ -132,6 +132,7 @@ const Register = ({ changeView }) => {
           label="Agree to terms and conditions?"
         />
       </div>
+      <br />
       <Button large={true} label="Register" onClick={onRegister} />
       <span className="Register__no-account" onClick={changeView}>
         I already have an account

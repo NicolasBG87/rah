@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopBar = ({ user }) => {
+const TopBar = ({ user, logout }) => {
   const avatar =
     user.avatar === "placeholder"
       ? require("assets/img/avatar.svg")
@@ -14,6 +14,7 @@ const TopBar = ({ user }) => {
         alt="Logo"
       />
       <div className="TopBar__actions">
+        <button onClick={logout}>Logout</button>
         <button>
           <img
             src={require("assets/img/notifications.svg")}
@@ -24,6 +25,9 @@ const TopBar = ({ user }) => {
         <button>
           <img src={require("assets/img/cart.svg")} alt="Cart" />
           <span className="Indicator" />
+        </button>
+        <button>
+          <img src={require("assets/img/support.svg")} alt="Support" />
         </button>
         <button>
           <img className="TopBar__avatar" src={avatar} alt="Avatar" />

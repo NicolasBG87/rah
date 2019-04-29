@@ -105,7 +105,9 @@ router.post("/authenticate", (req, res, next) => {
         role: user.role,
         _id: user._id,
         verified: user.verified,
-        locked: user.locked
+        locked: user.locked,
+        balance: user.balance,
+        auctions: user.auctions
       };
       return res.json({
         success: true,
@@ -155,7 +157,9 @@ router.post("/login", (req, res, next) => {
               role: user.role,
               _id: user._id,
               verified: user.verified,
-              locked: user.locked
+              locked: user.locked,
+              balance: user.balance,
+              auctions: user.auctions
             }
           });
         });

@@ -70,6 +70,24 @@ const UserSchema = new Schema({
   locked: {
     type: Boolean,
     default: false
+  },
+  balance: {
+    type: Number,
+    default: 0
+  },
+  auctions: {
+    watching: {
+      type: Number,
+      default: 0
+    },
+    pending: {
+      type: Number,
+      default: 0
+    },
+    expired: {
+      type: Number,
+      default: 0
+    }
   }
 });
 

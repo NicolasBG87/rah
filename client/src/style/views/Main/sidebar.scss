@@ -1,0 +1,46 @@
+.Sidebar {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  background: $color_dark;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+
+  &--user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &--management {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: $color_primary;
+    background: none;
+    border: none;
+    font-size: 16px;
+    margin: 15px 0;
+    cursor: pointer;
+
+    & > img {
+      height: 40px;
+      width: 40px;
+      margin-bottom: 5px;
+    }
+  }
+}
