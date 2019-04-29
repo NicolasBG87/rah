@@ -5,9 +5,15 @@
   width: 100vw;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+// BASE
 @import "./base/colors.scss";
 @import "./base/typography.scss";
 @import "./base/util.scss";
+// COMPONENTS
 @import "./components/button.scss";
 @import "./components/input.scss";
 @import "./components/checkbox.scss";
@@ -16,6 +22,10 @@
 @import "./components/spinner.scss";
 @import "./components/modal.scss";
 @import "./components/tooltip.scss";
-@import "./views/home.scss";
-@import "./views/login.scss";
-@import "./views/register.scss";
+// VIEWS/PAGES
+@import "./views/Home/home.scss";
+@import "./views/Home/login.scss";
+@import "./views/Home/register.scss";
+@import "./views/Main/main.scss";
+@import "./views/Main/topbar.scss";
+@import "./views/Main/bottombar.scss";

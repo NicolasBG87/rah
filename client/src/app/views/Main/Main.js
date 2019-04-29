@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from "react";
 
+import TopBar from "app/views/Main/TopBar";
+import BottomBar from "app/views/Main/BottomBar";
+
 import { AuthContext } from "app/util/auth";
 
 const Main = () => {
@@ -14,8 +17,9 @@ const Main = () => {
 
   return (
     <div className="Main">
-      <h1>Hello, {user.first_name}</h1>
+      <TopBar user={user} />
       <button onClick={logout}>Logout</button>
+      <BottomBar />
     </div>
   );
 };
