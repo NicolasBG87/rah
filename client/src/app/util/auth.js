@@ -6,8 +6,8 @@ export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
-  const [token, setToken] = useState("");
-  const { getUser, authenticate } = useContext(APIContext);
+  const [token, setToken] = useState(undefined);
+  const { getUser, authenticate, passwordReset } = useContext(APIContext);
 
   const tokenAuth = token => {
     if (token) {
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
           setToken(token);
         })
         .catch(error => {
-          setIsAuthenticated(false);
+          logout();
         });
     }
   };
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
         setUser(response.data.data);
         setToken(response.data.token);
-        data.rememberMe && saveToken(response.data.token);
+        data.rememberMe && localStorage.setItem("token", response.data.token);
         callback();
       })
       .catch(error => {
@@ -37,18 +37,26 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
+  const resetPassword = data => {
+    return passwordReset(data);
+  };
+
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem("token");
   };
 
-  const saveToken = token => {
-    localStorage.setItem("token", token);
-  };
-
   return (
     <AuthContext.Provider
-      value={{ login, logout, isAuthenticated, user, token, tokenAuth }}
+      value={{
+        login,
+        logout,
+        isAuthenticated,
+        user,
+        token,
+        tokenAuth,
+        resetPassword
+      }}
     >
       {children}
     </AuthContext.Provider>

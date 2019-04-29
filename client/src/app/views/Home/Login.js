@@ -3,8 +3,10 @@ import React, { useState, useContext } from "react";
 import Input from "app/components/Input";
 import Checkbox from "app/components/Checkbox";
 import Button from "app/components/Button";
+import PasswordReset from "app/components/PasswordReset";
 
 import { AuthContext } from "app/util/auth";
+import { ModalContext } from "app/components/Modal";
 import * as validator from "app/util/validator";
 
 const initialFormData = {
@@ -16,6 +18,7 @@ const initialFormData = {
 const Login = ({ history, changeView }) => {
   const [formData, setFormData] = useState(initialFormData);
   const { login } = useContext(AuthContext);
+  const { useModal, closeModal } = useContext(ModalContext);
 
   const onInputChange = e => {
     const { value, name } = e.target;
@@ -41,6 +44,14 @@ const Login = ({ history, changeView }) => {
     history.push("/");
   };
 
+  const onPasswordReset = () => {
+    const modalConfig = {
+      title: "Reset Password",
+      body: <PasswordReset closeModal={closeModal} />
+    };
+    useModal(modalConfig);
+  };
+
   return (
     <form className="Login" onSubmit={onLogin}>
       <Input
@@ -59,7 +70,9 @@ const Login = ({ history, changeView }) => {
         validator={validator.isPassword}
         label="PASSWORD"
       />
-      <sub className="Login__forgot-password">Forgot Password?</sub>
+      <div className="Login__forgot-password">
+        <sub onClick={onPasswordReset}>Forgot Password?</sub>
+      </div>
       <div className="CheckBoxWrapper">
         <Checkbox
           name="rememberMe"

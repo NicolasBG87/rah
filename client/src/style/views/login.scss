@@ -2,9 +2,14 @@
   width: 500px;
 
   &__forgot-password {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     text-align: right;
-    margin: -10px 5px 15px 0;
+
+    & > sub {
+      cursor: pointer;
+    }
   }
 
   .CheckBoxWrapper {

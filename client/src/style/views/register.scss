@@ -1,11 +1,6 @@
 .Register {
   @extend .Login;
 
-  .FormGroup {
-    display: flex;
-    justify-content: space-between;
-  }
-
   &__no-account {
     color: $color_gray;
     margin-left: 20px;

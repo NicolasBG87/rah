@@ -4,7 +4,7 @@ import App from "./app/App";
 import "./style/index.scss";
 import * as serviceWorker from "./serviceWorker";
 
-import { ContextProvider } from "./app/util/combineContext";
+import { ContextProvider } from "app/util/combineContext";
 
 const app = (
   <ContextProvider>

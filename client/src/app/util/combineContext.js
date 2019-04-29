@@ -2,6 +2,7 @@ import React from "react";
 
 import { ToastProvider } from "app/components/Toast";
 import { SpinnerProvider } from "app/components/Spinner";
+import { ModalProvider } from "app/components/Modal";
 import { AuthProvider } from "app/util/auth";
 import { APIProvider } from "config/api";
 
@@ -12,7 +13,9 @@ export const ContextProvider = ({ children }) => {
       <ToastProvider>
         <SpinnerProvider>
           <APIProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <ModalProvider>{children}</ModalProvider>
+            </AuthProvider>
           </APIProvider>
         </SpinnerProvider>
       </ToastProvider>

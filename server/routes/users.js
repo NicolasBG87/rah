@@ -25,6 +25,60 @@ const User = require("../models/User");
 const pwValidator = require("../helpers/pw-validator");
 
 /**
+ * RESET PASSWORD
+ *
+ * @route   api/users/resetPassword
+ * @method  POST
+ * @headers {
+ *   'Content-Type':  'application/json'
+ * }
+ * @body {
+ *    email:                {String}
+ *    new_password:         {String}
+ *    new_passwordConfirm:  {String}
+ *    secret_question:      {String}
+ *    secret_answer:        {String}
+ * }
+ */
+router.post("/resetPassword", (req, res, next) => {
+  const { email, new_password, secret_question, secret_answer } = req.body;
+  User.findOne({ email }).then(user => {
+    if (!user) return next({ message: "User not found" });
+    if (
+      secret_question !== user.secret_question ||
+      secret_answer !== user.secret_answer
+    )
+      return next({ message: "Secret Question and/or Answer is invalid" });
+
+    bcrypt
+      .compare(new_password, user.password)
+      .then(isMatch => {
+        if (isMatch)
+          return next({
+            message: "You cannot change password to the previous value"
+          });
+      })
+      .catch(err => next(err));
+
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(new_password, salt, (err, hash) => {
+        if (err) return next(err);
+        user.password = hash;
+        user
+          .save()
+          .then(user =>
+            res.json({
+              success: true,
+              message: `Password successfully updated`
+            })
+          )
+          .catch(err => next(err));
+      });
+    });
+  });
+});
+
+/**
  * AUTHENTICATE
  *
  * @route   api/users/authenticate

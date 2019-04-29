@@ -44,9 +44,12 @@ export const APIProvider = ({ children }) => {
   const getUser = data => axios.post("/users/login", data);
   const createUser = data => axios.post("/users/register", data);
   const authenticate = () => axios.post("/users/authenticate");
+  const passwordReset = data => axios.post("/users/resetPassword", data);
 
   return (
-    <APIContext.Provider value={{ getUser, createUser, authenticate }}>
+    <APIContext.Provider
+      value={{ getUser, createUser, authenticate, passwordReset }}
+    >
       {children}
     </APIContext.Provider>
   );
