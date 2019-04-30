@@ -24,7 +24,7 @@ const Login = ({ history, changeView }) => {
 
   const onRememberMeMouseEnter = e => {
     const { offsetLeft, offsetTop } = e.target;
-    const location = { left: offsetLeft, top: offsetTop };
+    const location = { left: offsetLeft, top: offsetTop - 50 };
     const content = "You will remain logged in until you manually logout.";
     useTooltip(content, location);
   };

@@ -3,11 +3,12 @@
   background: $color_black;
   border-radius: 5px;
   padding: 10px;
-  transform: translateY(-100%) translateY(-10px);
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(50px) translateY(-10px);
 
   &__wrapper {
     height: 100%;
-    width: 100%;
+    max-width: 500px;
     position: relative;
 
     &:before {

@@ -1,4 +1,5 @@
 import React from "react";
+import MaterialIcon from "material-icons-react";
 
 const TopBar = ({ user, logout }) => {
   const avatar =
@@ -16,18 +17,15 @@ const TopBar = ({ user, logout }) => {
       <div className="TopBar__actions">
         <button onClick={logout}>Logout</button>
         <button>
-          <img
-            src={require("assets/img/notifications.svg")}
-            alt="Notifications"
-          />
+          <MaterialIcon icon="notifications" color="#e5e0f5" />
           <span className="Indicator" />
         </button>
         <button>
-          <img src={require("assets/img/cart.svg")} alt="Cart" />
+          <MaterialIcon icon="shopping_cart" color="#e5e0f5" />
           <span className="Indicator" />
         </button>
         <button>
-          <img src={require("assets/img/support.svg")} alt="Support" />
+          <MaterialIcon icon="help" color="#e5e0f5" />
         </button>
         <button>
           <img className="TopBar__avatar" src={avatar} alt="Avatar" />

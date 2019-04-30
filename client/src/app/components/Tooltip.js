@@ -27,7 +27,7 @@ export const TooltipProvider = ({ children }) => {
         <div
           className="Tooltip"
           style={{
-            top: location.top + "px",
+            bottom: window.innerHeight - location.top + "px",
             left: location.left + "px"
           }}
         >
