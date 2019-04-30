@@ -1,0 +1,21 @@
+.Center {
+  padding: 60px 5px 60px 105px;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > div {
+      background: $color_dark;
+      height: calc(100vh - 120px);
+      width: 100%;
+      box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+      padding: 5px;
+
+      &:nth-child(2) {
+        margin-left: 5px;
+      }
+    }
+  }
+}

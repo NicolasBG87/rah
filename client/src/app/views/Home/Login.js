@@ -74,7 +74,12 @@ const Login = ({ history, changeView }) => {
       <div className="Login__forgot-password">
         <sub onClick={onPasswordReset}>Forgot Password?</sub>
       </div>
-      <div className="CheckBoxWrapper" data-tip data-for="RememberMe">
+      <div
+        className="CheckBoxWrapper"
+        data-tip
+        data-for="RememberMe"
+        data-delay-show="500"
+      >
         <ReactTooltip
           className="extraClass"
           id="RememberMe"

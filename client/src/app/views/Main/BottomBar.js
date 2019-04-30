@@ -15,7 +15,12 @@ const BottomBar = ({ user }) => {
             <MaterialIcon icon="add_circle" color="#6fcf97" />
           </button>
         </div>
-        <div className="BottomBar__item" data-tip data-for="Watching">
+        <div
+          className="BottomBar__item"
+          data-tip
+          data-for="Watching"
+          data-delay-show="500"
+        >
           <ReactTooltip
             className="extraClass"
             id="Watching"
@@ -26,7 +31,7 @@ const BottomBar = ({ user }) => {
           </ReactTooltip>
           <span className="BottomBar__item--property">Watching: </span>
           <span className="BottomBar__item--value">
-            {user.auctions.watching + " auctions"}
+            {user.auctions.watching}
           </span>
           <button className="BottomBar__item--button">
             <MaterialIcon icon="remove_red_eye" color="#6fcf97" />
@@ -35,7 +40,7 @@ const BottomBar = ({ user }) => {
         <div className="BottomBar__item">
           <span className="BottomBar__item--property">Pending: </span>
           <span className="BottomBar__item--value">
-            {user.auctions.pending + " auctions"}
+            {user.auctions.pending}
           </span>
           <button className="BottomBar__item--button">
             <MaterialIcon icon="autorenew" color="#6fcf97" />
@@ -44,7 +49,7 @@ const BottomBar = ({ user }) => {
         <div className="BottomBar__item">
           <span className="BottomBar__item--property">Expired: </span>
           <span className="BottomBar__item--value">
-            {user.auctions.expired + " auctions"}
+            {user.auctions.expired}
           </span>
           <button className="BottomBar__item--button">
             <MaterialIcon icon="watch_later" color="#6fcf97" />
@@ -53,7 +58,7 @@ const BottomBar = ({ user }) => {
         <div className="BottomBar__item">
           <span className="BottomBar__item--property">Archived: </span>
           <span className="BottomBar__item--value">
-            {user.auctions.archived + " auctions"}
+            {user.auctions.archived}
           </span>
           <button className="BottomBar__item--button">
             <MaterialIcon icon="archive" color="#6fcf97" />

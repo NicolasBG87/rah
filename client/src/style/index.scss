@@ -9,10 +9,24 @@
   box-sizing: border-box;
 }
 
+.Flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 // BASE
 @import "./base/colors.scss";
 @import "./base/typography.scss";
 @import "./base/util.scss";
+@import "./base/animations.scss";
 // COMPONENTS
 @import "./components/button.scss";
 @import "./components/input.scss";
@@ -30,3 +44,6 @@
 @import "./views/Main/topbar.scss";
 @import "./views/Main/bottombar.scss";
 @import "./views/Main/sidebar.scss";
+@import "./views/Main/center.scss";
+@import "./views/Main/browse.scss";
+@import "./views/Main/searchresults.scss";
