@@ -1,5 +1,6 @@
 import React from "react";
 import MaterialIcon from "material-icons-react";
+import ReactTooltip from "react-tooltip";
 
 const BottomBar = ({ user }) => {
   return (
@@ -14,7 +15,15 @@ const BottomBar = ({ user }) => {
             <MaterialIcon icon="add_circle" color="#6fcf97" />
           </button>
         </div>
-        <div className="BottomBar__item">
+        <div className="BottomBar__item" data-tip data-for="Watching">
+          <ReactTooltip
+            className="extraClass"
+            id="Watching"
+            type="dark"
+            effect="solid"
+          >
+            <span>You will receive notifications for watched auctions.</span>
+          </ReactTooltip>
           <span className="BottomBar__item--property">Watching: </span>
           <span className="BottomBar__item--value">
             {user.auctions.watching + " auctions"}

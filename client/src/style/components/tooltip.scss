@@ -1,50 +1,30 @@
-.Tooltip {
-  position: absolute;
-  background: $color_black;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
-  transform: translateY(50px) translateY(-10px);
+.extraClass {
+  background: $color_black !important;
+  color: $color_primary !important;
+  opacity: 1 !important;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5) !important;
 
-  &__wrapper {
-    height: 100%;
-    max-width: 500px;
-    position: relative;
-
-    &:before {
-      top: 100%;
-      left: 0;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-top-color: $color_black;
-      border-width: 15px;
+  &.place-top {
+    &:after {
+      border-top-color: $color_black !important;
     }
   }
 
-  &__content {
-    color: $color_primary;
-    font-size: 14px;
+  &.place-left {
+    &:after {
+      border-left-color: $color_black !important;
+    }
   }
 
-  &-enter {
-    opacity: 0;
+  &.place-right {
+    &:after {
+      border-right-color: $color_black !important;
+    }
   }
 
-  &-enter-active {
-    opacity: 1;
-    transition: all 250ms ease;
-  }
-
-  &-exit {
-    opacity: 1;
-  }
-
-  &-exit-active {
-    opacity: 0;
-    transition: all 250ms ease;
+  &.place-bottom {
+    &:after {
+      border-bottom-color: $color_black !important;
+    }
   }
 }
