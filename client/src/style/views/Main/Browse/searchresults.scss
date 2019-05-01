@@ -1,0 +1,65 @@
+.SearchResults {
+  width: 100%;
+  margin-top: 30px;
+
+  & p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+    white-space: nowrap;
+  }
+
+  &__name {
+    padding-right: 10px;
+
+    & > div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  .Auction {
+    &__id {
+      color: $color_secondary;
+      font-weight: 700;
+    }
+  }
+
+  &__seller {
+    width: 150px;
+    max-width: 150px;
+  }
+
+  &__time-left {
+    color: $color_danger;
+    text-align: center;
+    width: 120px;
+  }
+
+  &__price {
+    width: 200px;
+  }
+
+  &__bid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2px;
+
+    &--value {
+      color: $color_info;
+    }
+  }
+
+  &__buyout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    &--value {
+      color: $color_success;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.SearchResults {
+  & > thead {
+    background: $color_highlight;
+
+    & > tr > th {
+      padding: 5px;
+      text-align: left;
+      border: 1px solid $color_secondary;
+      cursor: pointer;
+
+      &:after {
+        content: "▾";
+        margin-left: 5px;
+      }
+    }
+  }
+}

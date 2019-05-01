@@ -1,0 +1,27 @@
+.SearchResults {
+  & > tbody {
+    & img {
+      height: 50px;
+      width: 75px;
+      vertical-align: middle;
+      margin: 5px;
+      border-radius: 3px;
+    }
+
+    & > tr {
+      cursor: pointer;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color_highlight;
+      }
+
+      & > td {
+        vertical-align: middle;
+
+        &:not(:first-child) {
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}

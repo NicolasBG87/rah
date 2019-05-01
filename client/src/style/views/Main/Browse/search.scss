@@ -1,0 +1,52 @@
+.Search {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  input,
+  select {
+    background: $color_highlight;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 5px;
+    color: $color_primary;
+    font-size: 14px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  input::placeholder {
+    color: $color_secondary;
+    font-size: 14px;
+  }
+
+  &__range {
+    width: 75px;
+    text-align: right;
+  }
+
+  &__term {
+    width: 350px;
+  }
+
+  &__timeleft {
+    background: $color_highlight;
+    padding: 0 20px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    color: $color_primary;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+
+    & > option {
+      background: $color_highlight;
+      color: $color_primary;
+      font-size: 14px;
+    }
+  }
+
+  &__button {
+    @include button(darken($color_success, 25), $color_primary);
+    margin: 5px;
+  }
+}
