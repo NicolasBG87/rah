@@ -5,17 +5,18 @@ import { APIContext } from "config/api";
 export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({});
-  const [token, setToken] = useState(undefined);
-  const { getUser, authenticate, passwordReset } = useContext(APIContext);
+  const [user, setUser] = useState(undefined);
+  const { getUser, authenticate, passwordReset, setToken, token } = useContext(
+    APIContext
+  );
 
   const tokenAuth = token => {
     if (token) {
+      setToken(token);
       authenticate()
         .then(response => {
-          setIsAuthenticated(true);
           setUser(response.data.data);
-          setToken(token);
+          setIsAuthenticated(true);
         })
         .catch(error => {
           logout();
@@ -26,10 +27,10 @@ export const AuthProvider = ({ children }) => {
   const login = (data, callback) => {
     getUser(data)
       .then(response => {
-        setIsAuthenticated(true);
-        setUser(response.data.data);
-        setToken(response.data.token);
         data.rememberMe && localStorage.setItem("token", response.data.token);
+        setToken(response.data.token);
+        setUser(response.data.data);
+        setIsAuthenticated(true);
         callback();
       })
       .catch(error => {
@@ -42,6 +43,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    setToken(undefined);
     setIsAuthenticated(false);
     localStorage.removeItem("token");
   };

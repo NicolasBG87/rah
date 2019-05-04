@@ -1,5 +1,6 @@
 // Multer storage config
 const User = require("../models/User");
+const Auction = require("../models/Auction");
 const multer = require("multer");
 
 module.exports = {
@@ -15,13 +16,12 @@ module.exports = {
    * Multer upload options
    *
    * @param {String} id
-   * @returns {{format: string, transformation: {width: number, crop: string, height: number}[], public_id: string}}
+   * @returns {{format: string, public_id: string}}
    */
   options: id => {
     return {
       public_id: id,
-      format: "png",
-      transformation: [{ width: 100, height: 100, crop: "fit" }]
+      format: "png"
     };
   },
   /**
@@ -50,6 +50,22 @@ module.exports = {
           success: true,
           message: `User successfully updated`
         });
+      });
+    });
+  },
+  multifile: (err, images, req, res, path, next) => {
+    if (err) return res.send(err);
+    const fs = require("fs");
+    // Remove file from storage
+    fs.unlinkSync(path);
+    const auction = new Auction(req.body);
+    console.log(auction);
+    auction.images = [];
+    user.save(err => {
+      if (err) next(err);
+      res.json({
+        success: true,
+        message: `User successfully updated`
       });
     });
   }

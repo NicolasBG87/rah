@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 
 import { ToastContext } from "app/components/Toast";
@@ -9,14 +9,17 @@ export const APIContext = React.createContext();
 export const APIProvider = ({ children }) => {
   const { useToast } = useContext(ToastContext);
   const { useSpinner } = useContext(SpinnerContext);
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(undefined);
 
   axios.defaults.baseURL = BASE_URL;
   axios.defaults.timeout = REQUEST_TIMEOUT;
-  axios.defaults.headers.common["Authorization"] = token || "";
 
   axios.interceptors.request.use(
     config => {
+      const hasToken = localStorage.getItem("token") || token;
+      if (hasToken) {
+        config.headers["Authorization"] = hasToken;
+      }
       useSpinner(true);
       return config;
     },
@@ -45,10 +48,19 @@ export const APIProvider = ({ children }) => {
   const createUser = data => axios.post("/users/register", data);
   const authenticate = () => axios.post("/users/authenticate");
   const passwordReset = data => axios.post("/users/resetPassword", data);
+  const fetchAllAuctions = data => axios.post("/auctions/all", data);
 
   return (
     <APIContext.Provider
-      value={{ getUser, createUser, authenticate, passwordReset }}
+      value={{
+        setToken,
+        token,
+        getUser,
+        createUser,
+        authenticate,
+        passwordReset,
+        fetchAllAuctions
+      }}
     >
       {children}
     </APIContext.Provider>

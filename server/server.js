@@ -9,6 +9,9 @@ const errorHandler = require("./helpers/error-handler");
 // Import routes
 const users = require("./routes/users");
 
+// Import auctions
+const auctions = require("./routes/auctions");
+
 // Define the server
 const app = express();
 
@@ -39,6 +42,9 @@ require("./config/cors")(app);
 
 // Subscribe to users routes
 app.use("/api/users", users);
+
+// Subscribe to auctions routes
+app.use("/api/auctions", auctions);
 
 // Handle errors
 app.use((err, req, res, next) => {

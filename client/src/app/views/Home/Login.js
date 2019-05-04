@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ReactTooltip from "react-tooltip";
 
 import Input from "app/components/Input";
@@ -18,8 +18,16 @@ const initialFormData = {
 
 const Login = ({ history, changeView }) => {
   const [formData, setFormData] = useState(initialFormData);
-  const { login } = useContext(AuthContext);
+  const { login, token } = useContext(AuthContext);
   const { useModal, closeModal } = useContext(ModalContext);
+
+  useEffect(() => {
+    const lsToken = localStorage.getItem("token");
+    const hasToken = token || lsToken;
+    if (hasToken) {
+      redirectToMain();
+    }
+  }, []);
 
   const onInputChange = e => {
     const { value, name } = e.target;
@@ -42,7 +50,7 @@ const Login = ({ history, changeView }) => {
   };
 
   const redirectToMain = () => {
-    history.push("/");
+    history.push("/browse");
   };
 
   const onPasswordReset = () => {

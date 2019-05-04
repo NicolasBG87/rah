@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import TopBar from "app/views/Main/TopBar";
 import BottomBar from "app/views/Main/BottomBar";
@@ -23,23 +23,19 @@ const Main = () => {
 
   return (
     <div className="Main">
-      {user && user.auctions ? (
+      {user ? (
         <React.Fragment>
           <TopBar user={user} logout={logout} />
           <Sidebar user={user} />
           <Center>
             <Switch>
-              <Route path="/" exact component={Browse} />
+              <Route path="/browse" exact component={Browse} />
               <Route path="/bids" exact component={Browse} />
               <Route path="/auctions" exact component={Browse} />
               <Route path="/analytics" exact component={Browse} />
               <ManagerRoute path="/manage" exact component={Browse} />
               <AdminRoute path="/admin" exact component={Browse} />
-              <Route
-                render={() => (
-                  <div>No content found mathing the route you entered.</div>
-                )}
-              />
+              <Route render={() => <Redirect to="/browse" />} />
             </Switch>
           </Center>
           <BottomBar user={user} />

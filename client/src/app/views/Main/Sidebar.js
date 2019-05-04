@@ -10,7 +10,7 @@ const Sidebar = ({ user }) => {
   return (
     <aside className="Sidebar">
       <div className="Sidebar--user">
-        <NavLink to="/" className="Sidebar__button">
+        <NavLink to="/browse" className="Sidebar__button">
           <MaterialIcon icon="gps_fixed" color="#6fcf97" size={40} />
           <p>Browse</p>
         </NavLink>
