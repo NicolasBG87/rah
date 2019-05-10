@@ -18,6 +18,53 @@ const BottomBar = ({ user }) => {
         <div
           className="BottomBar__item"
           data-tip
+          data-for="Pending"
+          data-delay-show="500"
+        >
+          <ReactTooltip
+            className="extraClass"
+            id="Pending"
+            type="dark"
+            effect="solid"
+          >
+            <span>Your auction(s) with active bid(s).</span>
+          </ReactTooltip>
+          <span className="BottomBar__item--property">Pending: </span>
+          <span className="BottomBar__item--value">
+            {user.auctions.pending}
+          </span>
+          <button className="BottomBar__item--button">
+            <MaterialIcon icon="autorenew" color="#6fcf97" />
+          </button>
+        </div>
+        <div
+          className="BottomBar__item"
+          data-tip
+          data-for="Expired"
+          data-delay-show="500"
+        >
+          <ReactTooltip
+            className="extraClass"
+            id="Expired"
+            type="dark"
+            effect="solid"
+          >
+            <span>
+              You can renew or archive expired auctions within 48 hours after
+              expiring.
+            </span>
+          </ReactTooltip>
+          <span className="BottomBar__item--property">Expired: </span>
+          <span className="BottomBar__item--value">
+            {user.auctions.expired}
+          </span>
+          <button className="BottomBar__item--button">
+            <MaterialIcon icon="watch_later" color="#6fcf97" />
+          </button>
+        </div>
+        <div
+          className="BottomBar__item"
+          data-tip
           data-for="Watching"
           data-delay-show="500"
         >
@@ -37,25 +84,22 @@ const BottomBar = ({ user }) => {
             <MaterialIcon icon="remove_red_eye" color="#6fcf97" />
           </button>
         </div>
-        <div className="BottomBar__item">
-          <span className="BottomBar__item--property">Pending: </span>
-          <span className="BottomBar__item--value">
-            {user.auctions.pending}
-          </span>
-          <button className="BottomBar__item--button">
-            <MaterialIcon icon="autorenew" color="#6fcf97" />
-          </button>
-        </div>
-        <div className="BottomBar__item">
-          <span className="BottomBar__item--property">Expired: </span>
-          <span className="BottomBar__item--value">
-            {user.auctions.expired}
-          </span>
-          <button className="BottomBar__item--button">
-            <MaterialIcon icon="watch_later" color="#6fcf97" />
-          </button>
-        </div>
-        <div className="BottomBar__item">
+        <div
+          className="BottomBar__item"
+          data-tip
+          data-for="Archived"
+          data-delay-show="500"
+        >
+          <ReactTooltip
+            className="extraClass"
+            id="Archived"
+            type="dark"
+            effect="solid"
+          >
+            <span>
+              Archived auction(s) can be reactivated at any given time.
+            </span>
+          </ReactTooltip>
           <span className="BottomBar__item--property">Archived: </span>
           <span className="BottomBar__item--value">
             {user.auctions.archived}

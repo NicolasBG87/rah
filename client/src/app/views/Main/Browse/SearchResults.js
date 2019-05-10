@@ -60,7 +60,7 @@ const SearchResults = ({ auctions, page_no, setPage_no }) => {
                     </p>
                     <p className="SearchResults__buyout">
                       <span className="SearchResults__buyout--property">
-                        Buyout{" "}
+                        Buyout
                       </span>
                       <span className="SearchResults__buyout--value">
                         {auction.price.buyout} $
