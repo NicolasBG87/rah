@@ -11,10 +11,10 @@ const Browse = () => {
   const { fetchAllAuctions } = useContext(APIContext);
 
   useEffect(() => {
-    fetchAllAuctions().then(response => {
+    fetchAllAuctions({ page_no }).then(response => {
       setAuctions(response.data.data);
     });
-  }, []);
+  }, [page_no]);
   return (
     <div className="Browse">
       <div className="Browse__left">

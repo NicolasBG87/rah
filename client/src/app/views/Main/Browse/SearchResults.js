@@ -1,9 +1,29 @@
 import React from "react";
 
+import moment from "moment";
+
 import Pagination from "app/views/Main/Browse/Table/Pagination";
 import TableHead from "app/views/Main/Browse/Table/TableHead";
 
 const SearchResults = ({ auctions, page_no, setPage_no }) => {
+  const calculateTimeLeft = createdAt => {
+    const timestamp = moment(new Date());
+    const expiresAt = moment(createdAt).add(3, "days");
+    const duration = moment.duration(expiresAt.diff(timestamp));
+    const duration_days = duration.days();
+    let className;
+
+    if (duration_days === 3) {
+      className = "success";
+    } else if (duration_days === 2) {
+      className = "info";
+    } else {
+      className = "danger";
+    }
+
+    return <p className={className}>{duration.humanize()}</p>;
+  };
+
   return (
     <table className="SearchResults">
       <Pagination
@@ -25,10 +45,10 @@ const SearchResults = ({ auctions, page_no, setPage_no }) => {
                   </div>
                 </td>
                 <td className="SearchResults__seller">
-                  <p>@{auction.owner}</p>
+                  <p>@{auction.owner.username}</p>
                 </td>
                 <td className="SearchResults__time-left">
-                  <p>{auction.expiresIn}</p>
+                  {calculateTimeLeft(auction.createdAt)}
                 </td>
                 <td className="SearchResults__price">
                   <div className="Flex-vertical">

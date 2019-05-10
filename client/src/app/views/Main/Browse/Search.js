@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ReactTooltip from "react-tooltip";
 
 const initialFormData = {
   term: "",
-  from: 0,
-  to: 0,
-  time_left: "medium"
+  bid_from: 0,
+  bid_to: 0,
+  buyout_from: 0,
+  buyout_to: 0
 };
 
 const Search = () => {
@@ -39,55 +39,42 @@ const Search = () => {
         />
       </div>
       <div className="Flex-vertical">
-        <span className="Search__range-label">Price Range $</span>
+        <span className="Search__range-label">Bid Range $</span>
         <div>
           <input
             className="Search__range"
-            name="from"
+            name="bid_from"
             type="number"
-            value={formData.from}
+            value={formData.bid_from}
             onChange={onInputChange}
           />
           <input
             className="Search__range"
-            name="to"
+            name="bid_to"
             type="number"
-            value={formData.to}
+            value={formData.bid_to}
             onChange={onInputChange}
           />
         </div>
       </div>
       <div className="Flex-vertical">
-        <label className="Search__timeleft-label" htmlFor="time_left">
-          Time Left
-        </label>
-        <select
-          className="Search__timeleft"
-          name="time_left"
-          value={formData.time_left}
-          onChange={onInputChange}
-          data-tip
-          data-for="TimeLeft"
-          data-delay-show="500"
-          data-multiline={true}
-        >
-          <option value="short">Short</option>
-          <option>Medium</option>
-          <option value="long">Long</option>
-        </select>
-        <ReactTooltip
-          className="extraClass"
-          id="TimeLeft"
-          type="dark"
-          effect="solid"
-          place="right"
-        >
-          <span>Short: Less than 1 day left</span>
-          <br />
-          <span>Medium: Between 1 and 3 days left</span>
-          <br />
-          <span>Long: Between 3 and 7 days left</span>
-        </ReactTooltip>
+        <span className="Search__range-label">Buyout Range $</span>
+        <div>
+          <input
+            className="Search__range"
+            name="buyout_from"
+            type="number"
+            value={formData.buyout_from}
+            onChange={onInputChange}
+          />
+          <input
+            className="Search__range"
+            name="buyout_to"
+            type="number"
+            value={formData.buyout_to}
+            onChange={onInputChange}
+          />
+        </div>
       </div>
       <button className="Search__button" type="submit">
         Search

@@ -39,14 +39,10 @@ const Pagination = ({ page_no = 1, pages, setPage_no }) => {
                 type="number"
                 value={page_no}
                 min={1}
-                max={Math.round(pages)}
-                onChange={e =>
-                  e.target.value > 0 && e.target.value < Math.round(pages)
-                    ? setCurrentPage(e.target.value)
-                    : null
-                }
+                max={pages}
+                readOnly
               />
-              of {pages > 1 ? Math.round(pages) : 1}
+              of {pages > 1 ? pages : 1}
             </span>
             <span className="Pagination__control" onClick={setNext}>
               {icon.arrowRight()}

@@ -13,3 +13,15 @@ $color_gray: rgba($color_primary, 0.5);
 @mixin gradient_bg() {
   background: linear-gradient(56.25deg, #212332, #474975);
 }
+
+.success {
+  color: $color_success;
+}
+
+.info {
+  color: $color_info;
+}
+
+.danger {
+  color: $color_danger;
+}

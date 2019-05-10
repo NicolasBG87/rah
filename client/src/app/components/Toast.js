@@ -12,12 +12,11 @@ export const ToastProvider = ({ children }) => {
     }, 5000);
   }, [toast]);
 
-  const useToast = ({
-    message = "You didn't provide a message to this toast!",
-    error = true
-  }) => {
-    setToast({ message, error });
-    setShowToast(true);
+  const useToast = ({ message, error = true }) => {
+    if (message) {
+      setToast({ message, error });
+      setShowToast(true);
+    }
   };
 
   return (

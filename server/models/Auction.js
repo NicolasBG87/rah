@@ -5,48 +5,61 @@
  * @type {Schema|Mongoose}
  */
 const mongoose = require("mongoose");
+const AutoIncrement = require("mongoose-sequence")(mongoose);
 const Schema = mongoose.Schema;
 
 // Auction Schema
-const AuctionSchema = new Schema({
-  name: {
-    type: String,
-    minLength: [2, "First Name must be at least 2 characters long"],
-    maxLength: [35, "First Name must be at most 35 characters long"],
-    required: [true, "Auction Name is required"]
-  },
-  owner: {
-    type: String,
-    required: [true, "Owner's ID is required"]
-  },
-  expiresIn: {
-    type: Number,
-    default: 86400000
-  },
-  price: {
-    bid: {
-      type: Number,
-      default: 0
+const AuctionSchema = new Schema(
+  {
+    _id: {
+      type: Number
     },
-    buyout: {
-      type: Number,
-      default: 10
-    }
-  },
-  images: [
-    {
+    name: {
       type: String,
-      default: "placeholder"
-    }
-  ],
-  description: {
-    type: String
+      minLength: [2, "First Name must be at least 2 characters long"],
+      maxLength: [35, "First Name must be at most 35 characters long"],
+      required: [true, "Auction Name is required"]
+    },
+    owner: {
+      username: String,
+      first_name: String,
+      last_name: String,
+      avatar: String,
+      _id: String
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      index: { expires: 259200 }
+    },
+    price: {
+      bid: {
+        type: Number,
+        default: 0
+      },
+      buyout: {
+        type: Number,
+        default: 10
+      }
+    },
+    images: [
+      {
+        type: String,
+        default: "placeholder"
+      }
+    ],
+    description: {
+      type: String
+    },
+    watchers: [
+      {
+        type: Schema.Types.ObjectId
+      }
+    ]
   },
-  watchers: [
-    {
-      type: Schema.Types.ObjectId
-    }
-  ]
-});
+  { _id: false }
+);
+
+AuctionSchema.plugin(AutoIncrement);
 
 module.exports = Auction = mongoose.model("auctions", AuctionSchema);
