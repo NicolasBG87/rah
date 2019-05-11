@@ -15,21 +15,26 @@
 @import "./components/spinner.scss";
 @import "./components/modal.scss";
 @import "./components/tooltip.scss";
+@import "./components/infopanel.scss";
 
 // VIEWS
+/// HOME
 @import "./views/Home/home.scss";
 @import "./views/Home/login.scss";
 @import "./views/Home/register.scss";
 
+/// MAIN
 @import "./views/Main/main.scss";
 @import "./views/Main/topbar.scss";
 @import "./views/Main/bottombar.scss";
 @import "./views/Main/sidebar.scss";
 @import "./views/Main/center.scss";
 
+//// BROWSE
 @import "./views/Main/Browse/browse.scss";
 @import "./views/Main/Browse/searchresults.scss";
 @import "./views/Main/Browse/search.scss";
 @import "./views/Main/Browse/tablehead.scss";
 @import "./views/Main/Browse/tablebody.scss";
 @import "./views/Main/Browse/pagination.scss";
+@import "./views/Main/Browse/auctioninfo.scss";

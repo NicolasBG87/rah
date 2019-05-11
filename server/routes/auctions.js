@@ -28,6 +28,31 @@ const SIZE = 10;
 const PAGE_NO = 1;
 
 /**
+ * RETRIEVE AUCTION
+ *
+ * @route   api/auctions/getOne
+ * @method  POST
+ * @headers {
+ *   'Content-Type':  'application/json',
+ *   'Authorization': '<access_token>'
+ * }
+ */
+router.post("/getOne", (req, res, next) => {
+  const token = tokenFormatter(req.headers.authorization);
+  const auctionId = req.body.id;
+  jwt.verify(token, keys.jwtKey, (err, decoded) => {
+    if (err) return next({ message: "You are not authorized" });
+    Auction.findById(auctionId, (err, auction) => {
+      if (err) return next(err);
+      return res.json({
+        success: true,
+        data: auction
+      });
+    });
+  });
+});
+
+/**
  * RETRIEVE ALL AUCTIONS
  *
  * @route   api/auctions/all
@@ -106,7 +131,6 @@ router.post("/upload_images", upload, async (req, res, next) => {
     if (err) return next({ message: "You are not authorized" });
     const filePaths = req.files.map(item => item.path);
     const uploadFolder = `${decoded.id}/${Date.now()}/`;
-    cloudinary.config(keys.cloudinary);
 
     let multipleUpload = new Promise(async (resolve, reject) => {
       let upload_len = filePaths.length;
@@ -167,12 +191,12 @@ router.post("/create", (req, res, next) => {
     const newAuction = new Auction(req.body);
     User.findById(req.body.owner, (err, user) => {
       if (err) return next(err);
-      console.log(user);
       newAuction.owner = {
         username: user.username,
         first_name: user.first_name,
         last_name: user.last_name,
         avatar: user.avatar,
+        registerDate: user.registerDate,
         _id: user._id
       };
 

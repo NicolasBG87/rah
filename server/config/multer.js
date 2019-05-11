@@ -59,7 +59,6 @@ module.exports = {
     // Remove file from storage
     fs.unlinkSync(path);
     const auction = new Auction(req.body);
-    console.log(auction);
     auction.images = [];
     user.save(err => {
       if (err) next(err);

@@ -49,6 +49,7 @@ export const APIProvider = ({ children }) => {
   const authenticate = () => axios.post("/users/authenticate");
   const passwordReset = data => axios.post("/users/resetPassword", data);
   const fetchAllAuctions = data => axios.post("/auctions/all", data);
+  const fetchAuction = data => axios.post("auctions/getOne", data);
   const createAuction = data => axios.post("/auctions/create", data);
 
   return (
@@ -61,6 +62,7 @@ export const APIProvider = ({ children }) => {
         authenticate,
         passwordReset,
         fetchAllAuctions,
+        fetchAuction,
         createAuction
       }}
     >

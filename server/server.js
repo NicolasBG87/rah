@@ -2,8 +2,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const cloudinary = require("cloudinary");
-
+const cloudinary = require("cloudinary").v2;
+const keys = require("./config/keys.dev");
 const errorHandler = require("./helpers/error-handler");
 
 // Import routes
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Define MongoDB key variable
-const db = require("./config/keys.dev").mongoURI;
+const db = keys.mongoURI;
 
 // Connect with MongoDB
 mongoose.set("useCreateIndex", true);
@@ -30,7 +30,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-const cloudCfg = require("./config/keys").cloudinary;
+const cloudCfg = keys.cloudinary;
 cloudinary.config(cloudCfg);
 
 // Use and configure passport middleware

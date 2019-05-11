@@ -16,15 +16,13 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const cloudinary = require("cloudinary").v2;
 const keys = require("../config/keys.dev");
+const cloudinary = require("cloudinary");
 const tokenFormatter = require("../helpers/token-formatter");
 const multer = require("multer");
 const multerCfg = require("../config/multer");
 const User = require("../models/User");
 const pwValidator = require("../helpers/pw-validator");
-
-cloudinary.config(keys.cloudinary);
 
 /**
  * RESET PASSWORD
@@ -250,7 +248,7 @@ router.patch("/update", (req, res, next) => {
       // and retrieve new avatar url after successful upload
       if (req.file) {
         const path = req.file.path;
-        cloudinary.uploader.upload(
+        cloudinary.v2.uploader.upload(
           path,
           multerCfg.options(req.body._id),
           (err, image) => multerCfg.callback(err, image, req, res, path, next)

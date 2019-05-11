@@ -25,6 +25,7 @@ const AuctionSchema = new Schema(
       first_name: String,
       last_name: String,
       avatar: String,
+      registerDate: Date,
       _id: String
     },
     createdAt: {

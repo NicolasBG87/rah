@@ -1,27 +1,25 @@
 import React from "react";
 
-import moment from "moment";
+import { DATE } from "app/util/helpers";
 
 import Pagination from "app/views/Main/Browse/Table/Pagination";
 import TableHead from "app/views/Main/Browse/Table/TableHead";
 
-const SearchResults = ({ auctions, page_no, setPage_no }) => {
+const SearchResults = ({ auctions, page_no, setPage_no, showAuctionInfo }) => {
   const calculateTimeLeft = createdAt => {
-    const timestamp = moment(new Date());
-    const expiresAt = moment(createdAt).add(3, "days");
-    const duration = moment.duration(expiresAt.diff(timestamp));
-    const duration_days = duration.days();
+    const duration = DATE.getDuration(createdAt);
+    const duration_hours = duration.asHours();
     let className;
 
-    if (duration_days === 3) {
+    if (duration_hours > 48) {
       className = "success";
-    } else if (duration_days === 2) {
+    } else if (duration_hours <= 48 && duration_hours > 24) {
       className = "info";
     } else {
       className = "danger";
     }
 
-    return <p className={className}>{duration.humanize()}</p>;
+    return <p className={className}>{DATE.getTimeLeft(duration)}</p>;
   };
 
   return (
@@ -36,7 +34,7 @@ const SearchResults = ({ auctions, page_no, setPage_no }) => {
         {auctions && auctions.auctions.length ? (
           auctions.auctions.map((auction, index) => {
             return (
-              <tr key={index}>
+              <tr key={index} onClick={() => showAuctionInfo(auction.id)}>
                 <td className="SearchResults__name">
                   <img src={auction.images[0]} alt="Featured" />
                   <div className="Flex-vertical">

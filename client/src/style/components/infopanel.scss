@@ -1,0 +1,14 @@
+.InfoPanel {
+  border: 1px solid $color_gray;
+  margin: 10px 0;
+  padding: 5px;
+
+  &__title {
+    font-size: 18px;
+    background: $color_dark;
+    height: 20px;
+    padding: 0 5px;
+    transform: translate(5px, -15px);
+    display: inline-block;
+  }
+}
