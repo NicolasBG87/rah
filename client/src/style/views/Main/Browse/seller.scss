@@ -38,5 +38,18 @@
       padding-right: 10px;
       border-right: 1px solid $color_gray;
     }
+
+    & p {
+      display: flex;
+      align-items: center;
+
+      & > span {
+        margin-left: 10px;
+
+        & > span {
+          width: 25px;
+        }
+      }
+    }
   }
 }

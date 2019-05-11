@@ -1,6 +1,7 @@
 import React from "react";
 import MaterialIcon from "material-icons-react";
 import ReactTooltip from "react-tooltip";
+import Rating from "react-rating";
 
 import { DATE } from "app/util/helpers";
 
@@ -58,7 +59,18 @@ const Seller = ({ auction }) => {
       </div>
       <div className="Seller__footer">
         <p>Items sold: 763</p>
-        <p>Success rate: 86%</p>
+        <p>
+          Rating:{" "}
+          <Rating
+            emptySymbol={<MaterialIcon icon="star_rate" color="#323350" />}
+            fullSymbol={<MaterialIcon icon="star_rate" color="#ff7a00" />}
+            placeholderSymbol={
+              <MaterialIcon icon="star_rate" color="#ff7a00" />
+            }
+            placeholderRating={3.5}
+            readonly={true}
+          />
+        </p>
       </div>
     </div>
   );

@@ -1,13 +1,12 @@
 .AuctionInfo {
   height: 100%;
-  position: relative;
-  padding-bottom: 50px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   &__name {
     background: $color_highlight;
-    padding: 10px;
+    padding: 5px 10px;
     font-size: 18px;
 
     & > p {
@@ -38,16 +37,10 @@
 
   &__description {
     height: 100px;
-    overflow: hidden;
     overflow-y: scroll;
   }
 
   &__actions {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 50px;
-
     &--bid {
       @include button($color_info, $color_primary);
     }

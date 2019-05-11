@@ -27,13 +27,15 @@ const Browse = () => {
   return (
     <div className="Browse">
       <div className="Browse__left">
-        <Search />
-        <SearchResults
-          auctions={auctions}
-          page_no={page_no}
-          setPage_no={setPage_no}
-          showAuctionInfo={showAuctionInfo}
-        />
+        <div>
+          <Search />
+          <SearchResults
+            auctions={auctions}
+            page_no={page_no}
+            setPage_no={setPage_no}
+            showAuctionInfo={showAuctionInfo}
+          />
+        </div>
         <p>{auctions.count} auction(s) currently available.</p>
       </div>
       <div className="Browse__right">
