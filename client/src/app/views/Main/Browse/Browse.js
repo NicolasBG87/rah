@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 
 import Search from "app/views/Main/Browse/Search";
 import SearchResults from "app/views/Main/Browse/SearchResults";
-import AuctionInfo from "app/views/Main/Browse/AuctionInfo";
+import AuctionInfo from "app/views/Main/Browse/AuctionInfo/AuctionInfo";
 
 import { APIContext } from "config/api";
 

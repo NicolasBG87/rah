@@ -1,0 +1,42 @@
+.Seller {
+  &__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+
+    & > div {
+      align-items: flex-start;
+      margin-left: 10px;
+    }
+  }
+
+  &__avatar {
+    height: 75px;
+    width: 75px;
+    border-radius: 5px;
+  }
+
+  &__actions > div {
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    background: $color_highlight;
+    padding: 5px;
+    margin-top: 5px;
+
+    & > p:not(:last-child) {
+      margin-right: 10px;
+      padding-right: 10px;
+      border-right: 1px solid $color_gray;
+    }
+  }
+}

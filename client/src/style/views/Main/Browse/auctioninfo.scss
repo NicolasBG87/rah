@@ -1,19 +1,39 @@
 .AuctionInfo {
+  height: 100%;
+  position: relative;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+
   &__name {
     background: $color_highlight;
     padding: 10px;
-    font-size: 22px;
+    font-size: 18px;
+
+    & > p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &__creation-date {
     color: $color_gray;
     font-style: italic;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   &__carousel {
-    height: 250px;
-    width: 100%;
+    margin: 5px 0;
+
+    & div,
+    & ul {
+      height: 250px;
+    }
+
+    & img {
+      height: 100%;
+      width: 100%;
+    }
   }
 
   &__description {
@@ -22,32 +42,32 @@
     overflow-y: scroll;
   }
 
-  &__seller {
-    &__avatar {
-      height: 75px;
-      width: 75px;
-      border-radius: 5px;
+  &__actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+
+    &--bid {
+      @include button($color_info, $color_primary);
     }
 
-    &__body {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    &--buyout {
+      @include button($color_success, $color_primary);
     }
 
-    &__footer {
-      display: flex;
-      align-items: center;
-
-      &--item {
-        width: 50px;
-        padding: 5px 0;
-        border-radius: 5px;
-        margin-right: 10px;
-        background: lighten($color_dark, 10);
-        text-align: center;
-        cursor: pointer;
-      }
+    &--watch {
+      @include button($color_highlight, $color_primary);
     }
   }
+}
+
+.Price > p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: darken($color_dark, 5);
+  padding: 5px;
+  margin-top: 2px;
+  border-radius: 3px;
 }
