@@ -6,6 +6,7 @@ import BottomBar from "app/views/Main/BottomBar";
 import Sidebar from "app/views/Main/Sidebar";
 import Center from "app/views/Main/Center";
 import Browse from "app/views/Main/Browse/Browse";
+import Auctions from "app/views/Main/Auctions/Auctions";
 
 import { AuthContext } from "app/util/auth";
 import AdminRoute from "app/util/AdminRoute";
@@ -31,7 +32,7 @@ const Main = () => {
             <Switch>
               <Route path="/browse" exact component={Browse} />
               <Route path="/bids" exact component={Browse} />
-              <Route path="/auctions" exact component={Browse} />
+              <Route path="/auctions" exact component={Auctions} />
               <Route path="/analytics" exact component={Browse} />
               <ManagerRoute path="/manage" exact component={Browse} />
               <AdminRoute path="/admin" exact component={Browse} />

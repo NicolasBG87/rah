@@ -5,7 +5,7 @@
   bottom: 60px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   justify-content: space-between;
   width: 100px;
   background: $color_dark;
@@ -33,11 +33,12 @@
     justify-content: flex-start;
     color: $color_primary;
     background: none;
-    border: none;
+    border: 5px solid transparent;
     font-size: 16px;
     margin: 15px 0;
     cursor: pointer;
     text-decoration: none;
+    width: 100%;
 
     & > p {
       margin-top: 5px;

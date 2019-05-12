@@ -1,6 +1,21 @@
 import moment from "moment";
 import "moment-duration-format";
 
+export const AUCTION = {
+  calculateNextBid: value => {
+    return value + Math.round(value * 0.01);
+  }
+};
+
+export const USER = {
+  calculateRating: value => {
+    const { approves, flags } = value;
+    const rating = (approves * 5) / (approves + flags);
+
+    return rating;
+  }
+};
+
 export const TEXT = {
   capitalize: value => {
     return value.charAt(0).toUpperCase() + value.slice(1);

@@ -21,17 +21,33 @@ const AuctionSchema = new Schema(
       required: [true, "Auction Name is required"]
     },
     owner: {
-      username: String,
-      first_name: String,
-      last_name: String,
-      avatar: String,
-      registerDate: Date,
-      _id: String
+      _id: String,
+      username: String
     },
     createdAt: {
       type: Date,
       default: Date.now,
       index: { expires: 259200 }
+    },
+    bids: [
+      {
+        user: {
+          type: Number
+        },
+        amount: {
+          type: Number,
+          default: 0
+        }
+      }
+    ],
+    buyout: {
+      user: {
+        type: Number
+      },
+      amount: {
+        type: Number,
+        default: 0
+      }
     },
     price: {
       bid: {
@@ -40,7 +56,7 @@ const AuctionSchema = new Schema(
       },
       buyout: {
         type: Number,
-        default: 10
+        default: 0
       }
     },
     images: [

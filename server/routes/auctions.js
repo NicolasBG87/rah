@@ -23,6 +23,7 @@ const multerCfg = require("../config/multer");
 const upload = multer({ storage: multerCfg.storage }).array("images", 20);
 const Auction = require("../models/Auction");
 const User = require("../models/User");
+const dataMapper = require("../helpers/data-mapper");
 
 const SIZE = 10;
 const PAGE_NO = 1;
@@ -44,9 +45,13 @@ router.post("/getOne", (req, res, next) => {
     if (err) return next({ message: "You are not authorized" });
     Auction.findById(auctionId, (err, auction) => {
       if (err) return next(err);
-      return res.json({
-        success: true,
-        data: auction
+      User.findById(auction.owner._id, (err, user) => {
+        const responseData = auction.toObject();
+        responseData.owner = dataMapper.mapSeller(user);
+        return res.json({
+          success: true,
+          data: responseData
+        });
       });
     });
   });
@@ -176,7 +181,7 @@ router.post("/upload_images", upload, async (req, res, next) => {
  * }
  * @body {
  *   name:         {String}
- *   owner:        {String}
+ *   owner:        {Object}
  *   expiresIn:    {Date}
  *   price:        {Object}
  *   images:       {String[]}
@@ -189,28 +194,16 @@ router.post("/create", (req, res, next) => {
   jwt.verify(token, keys.jwtKey, async (err, decoded) => {
     if (err) return next({ message: "You are not authorized" });
     const newAuction = new Auction(req.body);
-    User.findById(req.body.owner, (err, user) => {
-      if (err) return next(err);
-      newAuction.owner = {
-        username: user.username,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        avatar: user.avatar,
-        registerDate: user.registerDate,
-        _id: user._id
-      };
 
-      newAuction
-        .save()
-        .then(auction => {
-          res.json({
-            success: true,
-            message: `Auction ${auction._id} successfully created`,
-            data: auction
-          });
-        })
-        .catch(err => next(err));
-    });
+    newAuction
+      .save()
+      .then(auction => {
+        res.json({
+          success: true,
+          message: `Auction ${auction._id} successfully created`
+        });
+      })
+      .catch(err => next(err));
   });
 });
 

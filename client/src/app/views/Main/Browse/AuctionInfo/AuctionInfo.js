@@ -7,6 +7,12 @@ import Seller from "app/views/Main/Browse/AuctionInfo/Seller";
 import Price from "app/views/Main/Browse/AuctionInfo/Price";
 
 const AuctionInfo = ({ auction }) => {
+  const onBid = () => {};
+
+  const onBuyout = () => {};
+
+  const onWatch = () => {};
+
   return (
     <div className="AuctionInfo">
       <h1 className="AuctionInfo__name">
@@ -32,9 +38,15 @@ const AuctionInfo = ({ auction }) => {
         <Price auction={auction} />
       </InfoPanel>
       <div className="AuctionInfo__actions">
-        <button className="AuctionInfo__actions--bid">Bid</button>
-        <button className="AuctionInfo__actions--buyout">Buyout</button>
-        <button className="AuctionInfo__actions--watch">Watch</button>
+        <button className="AuctionInfo__actions--bid" onClick={onBid}>
+          Bid
+        </button>
+        <button className="AuctionInfo__actions--buyout" onClick={onBuyout}>
+          Buyout
+        </button>
+        <button className="AuctionInfo__actions--watch" onClick={onWatch}>
+          Watch
+        </button>
       </div>
     </div>
   );

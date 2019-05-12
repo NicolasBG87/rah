@@ -23,6 +23,41 @@ const multer = require("multer");
 const multerCfg = require("../config/multer");
 const User = require("../models/User");
 const pwValidator = require("../helpers/pw-validator");
+const dataMapper = require("../helpers/data-mapper");
+
+/**
+ * RATE
+ *
+ * @route   api/users/rate
+ * @method  POST
+ * @headers {
+ *   'Content-Type':  'application/json',
+ *   'Authorization': '<access_token>'
+ * }
+ */
+router.post("/rate", (req, res, next) => {
+  const token = tokenFormatter(req.headers.authorization);
+  jwt.verify(token, keys.jwtKey, (err, decoded) => {
+    if (err) return next({ message: "You are not authorized" });
+    User.findById(req.body.seller, (err, user) => {
+      if (err) return next(err);
+      if (user.rating.voters.includes(decoded.id))
+        return next({ message: "You have already voted." });
+      req.body.rate ? user.rating.approves++ : user.rating.flags++;
+      user.rating.voters.push(decoded.id);
+
+      user.save(err => {
+        if (err) return next(err);
+        return res.json({
+          success: true,
+          message: `You have ${req.body.rate ? "approved" : "flagged"} ${
+            user.username
+          }`
+        });
+      });
+    });
+  });
+});
 
 /**
  * RESET PASSWORD
@@ -96,19 +131,8 @@ router.post("/authenticate", (req, res, next) => {
     if (err) return next({ message: "You are not authorized" });
     User.findById(decoded.id, (err, user) => {
       if (err) return next(err);
-      const responseData = {
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        avatar: user.avatar,
-        registerDate: user.registerDate,
-        role: user.role,
-        _id: user._id,
-        verified: user.verified,
-        locked: user.locked,
-        balance: user.balance,
-        auctions: user.auctions
-      };
+      const responseData = dataMapper.mapUser(user);
+
       return res.json({
         success: true,
         message: `Logged in as ${user.first_name} ${user.last_name}`,
@@ -143,24 +167,15 @@ router.post("/login", (req, res, next) => {
           id: user._id,
           name: user.name
         };
+
+        const responseData = dataMapper.mapUser(user);
+
         jwt.sign(payload, keys.jwtKey, (err, token) => {
           return res.json({
             success: true,
             message: `Logged in as ${user.first_name} ${user.last_name}`,
             token: `Bearer ${token}`,
-            data: {
-              first_name: user.first_name,
-              last_name: user.last_name,
-              email: user.email,
-              avatar: user.avatar,
-              registerDate: user.registerDate,
-              role: user.role,
-              _id: user._id,
-              verified: user.verified,
-              locked: user.locked,
-              balance: user.balance,
-              auctions: user.auctions
-            }
+            data: responseData
           });
         });
       })

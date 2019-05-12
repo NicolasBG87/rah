@@ -51,6 +51,7 @@ export const APIProvider = ({ children }) => {
   const fetchAllAuctions = data => axios.post("/auctions/all", data);
   const fetchAuction = data => axios.post("auctions/getOne", data);
   const createAuction = data => axios.post("/auctions/create", data);
+  const rateSeller = data => axios.post("/users/rate", data);
 
   return (
     <APIContext.Provider
@@ -63,7 +64,8 @@ export const APIProvider = ({ children }) => {
         passwordReset,
         fetchAllAuctions,
         fetchAuction,
-        createAuction
+        createAuction,
+        rateSeller
       }}
     >
       {children}

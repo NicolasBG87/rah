@@ -26,7 +26,7 @@ const Browse = () => {
 
   return (
     <div className="Browse">
-      <div className="Browse__left">
+      <div className="Center__left">
         <div>
           <Search />
           <SearchResults
@@ -38,7 +38,7 @@ const Browse = () => {
         </div>
         <p>{auctions.count} auction(s) currently available.</p>
       </div>
-      <div className="Browse__right">
+      <div className="Center__right">
         {currentAuction ? <AuctionInfo auction={currentAuction} /> : null}
       </div>
     </div>

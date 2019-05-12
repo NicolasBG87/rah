@@ -14,6 +14,7 @@ const initialFormData = {
   first_name: "",
   last_name: "",
   email: "",
+  username: "",
   password: "",
   password_confirm: "",
   secret_question: "default",
@@ -84,6 +85,14 @@ const Register = ({ changeView }) => {
         onChange={onInputChange}
         validator={validator.isName}
         label="LAST NAME"
+      />
+      <Input
+        type="username"
+        name="username"
+        value={formData.username}
+        onChange={onInputChange}
+        validator={validator.isName}
+        label="USERNAME"
       />
       <Input
         type="email"

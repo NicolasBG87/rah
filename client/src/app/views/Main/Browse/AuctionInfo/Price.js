@@ -1,5 +1,7 @@
 import React from "react";
 
+import { AUCTION } from "app/util/helpers";
+
 const Price = ({ auction }) => {
   return (
     <>
@@ -10,7 +12,7 @@ const Price = ({ auction }) => {
         <p>
           The next bid value for this auction:{" "}
           <span className="danger">
-            {auction.price.bid + Math.round(auction.price.bid * 0.01)} $
+            {AUCTION.calculateNextBid(auction.price.bid)} $
           </span>
         </p>
         <p>

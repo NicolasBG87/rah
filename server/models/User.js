@@ -80,18 +80,51 @@ const UserSchema = new Schema({
     default: 0
   },
   auctions: {
-    watching: {
-      type: Number,
-      default: 0
-    },
-    pending: {
-      type: Number,
-      default: 0
-    },
-    expired: {
-      type: Number,
-      default: 0
+    watching: [
+      {
+        auction: Number,
+        amount: Number
+      }
+    ],
+    pending: [
+      {
+        auction: Number,
+        amount: Number
+      }
+    ],
+    expired: [
+      {
+        auction: Number,
+        amount: Number
+      }
+    ],
+    archived: [
+      {
+        auction: Number,
+        amount: Number
+      }
+    ]
+  },
+  bids: [
+    {
+      auction: Number,
+      amount: Number
     }
+  ],
+  sold: {
+    type: Number,
+    default: 0
+  },
+  rating: {
+    approves: {
+      type: Number,
+      default: 0
+    },
+    flags: {
+      type: Number,
+      default: 0
+    },
+    voters: [String]
   }
 });
 
